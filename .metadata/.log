@@ -1,0 +1,41 @@
+!SESSION 2016-11-10 16:22:59.197 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_101
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/web/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -data /Users/web/Desktop/Game/GameManagement -product org.eclipse.epp.package.jee.product -keyring /Users/web/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-10 16:23:06.222
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.oomph.p2.core 4 0 2016-11-10 16:23:21.553
+!MESSAGE Acquisition of lock file /Users/install/.p2/pools.info.lock timed out
+!STACK 0
+java.lang.RuntimeException: Acquisition of lock file /Users/install/.p2/pools.info.lock timed out
+	at org.eclipse.oomph.p2.internal.core.PersistentMap.lock(PersistentMap.java:368)
+	at org.eclipse.oomph.p2.internal.core.PersistentMap.load(PersistentMap.java:75)
+	at org.eclipse.oomph.p2.internal.core.AgentImpl.<init>(AgentImpl.java:138)
+	at org.eclipse.oomph.p2.internal.core.AgentManagerImpl$1.createElement(AgentManagerImpl.java:91)
+	at org.eclipse.oomph.p2.internal.core.AgentManagerImpl$1.createElement(AgentManagerImpl.java:1)
+	at org.eclipse.oomph.p2.internal.core.PersistentMap.loadElement(PersistentMap.java:190)
+	at org.eclipse.oomph.p2.internal.core.AgentManagerImpl$1.loadElement(AgentManagerImpl.java:82)
+	at org.eclipse.oomph.p2.internal.core.AgentManagerImpl$1.loadElement(AgentManagerImpl.java:1)
+	at org.eclipse.oomph.p2.internal.core.PersistentMap$1.handleKey(PersistentMap.java:83)
+	at org.eclipse.oomph.p2.internal.core.PersistentMap.load(PersistentMap.java:231)
+	at org.eclipse.oomph.p2.internal.core.PersistentMap.load(PersistentMap.java:79)
+	at org.eclipse.oomph.p2.internal.core.AgentManagerImpl.<init>(AgentManagerImpl.java:141)
+	at org.eclipse.oomph.p2.internal.core.AgentManagerImpl.<init>(AgentManagerImpl.java:63)
+	at org.eclipse.oomph.p2.core.P2Util.getAgentManager(P2Util.java:54)
+	at org.eclipse.oomph.setup.ui.SetupUIPlugin.performStartup(SetupUIPlugin.java:351)
+	at org.eclipse.oomph.setup.ui.SetupUIPlugin.access$3(SetupUIPlugin.java:346)
+	at org.eclipse.oomph.setup.ui.SetupUIPlugin$1$1.run(SetupUIPlugin.java:243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: java.io.FileNotFoundException: /Users/install/.p2/pools.info.lock (Permission denied)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
+	at java.io.FileWriter.<init>(FileWriter.java:90)
+	at org.eclipse.oomph.p2.internal.core.PersistentMap.lock(PersistentMap.java:362)
+	... 17 more
