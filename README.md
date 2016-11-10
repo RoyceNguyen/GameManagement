@@ -5,11 +5,12 @@ Create a class named Const.java or download the zip folder from Cai and edit
 
 Put in your phpmyadmin username and password
 
-public class Const {
+	public class Const {
 
 	public static final String USERNAME = "username";
 	
 	public static final String PASSWORD = "password";
+	}
  
  switch to the form and add in 
  
@@ -23,9 +24,7 @@ public class Const {
 			e.printStackTrace();
 		}
 	}
-  
-  
-}
+ 
 change <Yourusername> to your phpmyadmin username 
 
 go to phpmyadmin , goto yourusernamedb , go so SQL and run 
