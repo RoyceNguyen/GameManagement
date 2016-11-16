@@ -85,9 +85,9 @@ public class GameForm extends Application {
 		grid.getChildren().add(type);
 		vbox.getChildren().addAll(box1, box2, box3);
 		vbox.setPadding(new Insets(0, 0, 0, 50));
-		//box1.setPadding(new Insets(0, 0, 0, 50));
-		//box2.setPadding(new Insets(0, 0, 0, 50));
-		//box3.setPadding(new Insets(0, 0, 0, 50));
+		box1.setPadding(new Insets(10, 0, 0, 0));
+		box2.setPadding(new Insets(10, 0, 0, 0));
+		box3.setPadding(new Insets(10, 0, 0, 0));
 		
 		grid.getChildren().addAll(vbox);
 		GridPane.setConstraints(type, 2, 0);
