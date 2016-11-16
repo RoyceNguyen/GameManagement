@@ -64,7 +64,6 @@ public class GameForm extends Application {
 		GridPane.setConstraints(hoursPlayed, 1, 2);
 		grid.getChildren().add(hoursPlayed);
 		
-		
 		//Create the gameDesc text area
 		final TextArea gameDesc = new TextArea();
 		Label gameDescLabel = new Label("Game Description:");
@@ -90,14 +89,15 @@ public class GameForm extends Application {
 		//box2.setPadding(new Insets(0, 0, 0, 50));
 		//box3.setPadding(new Insets(0, 0, 0, 50));
 		
-		grid.getChildren().addAll(box1, box2, box3);
+		grid.getChildren().addAll(vbox);
 		GridPane.setConstraints(type, 2, 0);
-		GridPane.setConstraints(box1, 2, 1);
-		GridPane.setConstraints(box2, 2, 2);
-		GridPane.setConstraints(box3, 2, 3);
+		GridPane.setConstraints(vbox, 2, 1);
+		//GridPane.setConstraints(box1, 2, 1);
+		//GridPane.setConstraints(box2, 2, 2);
+		//GridPane.setConstraints(box3, 2, 3);
 		
 		border.setLeft(grid);
-		Scene scene = new Scene(border, 500, 530);
+		Scene scene = new Scene(border, 900, 500);
 		primaryStage.setTitle("Game Managenent");
 		primaryStage.setScene(scene);
 		primaryStage.show();
