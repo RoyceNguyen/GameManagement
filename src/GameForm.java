@@ -190,6 +190,7 @@ public class GameForm extends Application{
 		BorderPane seeRecords = new BorderPane();
 		//text view to insert record into
 		Text secondaryTitle = new Text("View Records");
+		//sets the BorderPane to center alignment
 		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
 		seeRecords.setPadding(new Insets(10,10,10,10));
 		TextArea records = new TextArea();
