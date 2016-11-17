@@ -195,6 +195,7 @@ public class GameForm extends Application{
 		seeRecords.setPadding(new Insets(10,10,10,10));
 		//creates Text area to view game records 
 		TextArea records = new TextArea();
+		//sets the width to the text field
 		records.setMaxWidth(400);
 		records.setEditable(false);
 		seeRecords.setTop(secondaryTitle);
