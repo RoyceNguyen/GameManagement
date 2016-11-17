@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -33,9 +34,14 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class GameForm extends Application{
-
+	public static Connection connection;
+	
+	InitializeDB dbTask = new InitializeDB();
+	Thread thread;
 	@Override
 	public void start(Stage stage) throws Exception {
+		thread = new Thread(dbTask);
+		thread.start();
 		//Create border pane for the whole form
 		BorderPane border = new BorderPane();
 		
