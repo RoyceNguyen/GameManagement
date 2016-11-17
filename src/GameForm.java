@@ -192,6 +192,7 @@ public class GameForm extends Application{
 		Text secondaryTitle = new Text("View Records");
 		//sets the BorderPane to center alignment
 		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
+		//sets padding to the BorderPane
 		seeRecords.setPadding(new Insets(10,10,10,10));
 		TextArea records = new TextArea();
 		records.setMaxWidth(400);
