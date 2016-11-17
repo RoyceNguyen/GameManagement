@@ -29,6 +29,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -150,6 +152,8 @@ public class GameForm extends Application{
 		}
 		);
 		
+		
+		
 		//Brings you to the second scene
 		Button next = new Button("Next");
 		next.setPrefSize(100, 20);
@@ -181,6 +185,32 @@ public class GameForm extends Application{
 		stage.setTitle("Game Management");
 		stage.setScene(scene);
 		stage.show();
+		
+		//create second scene to view records
+		BorderPane seeRecords = new BorderPane();
+		Text secondaryTitle = new Text("View Records");
+		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
+		seeRecords.setPadding(new Insets(10,10,10,10));
+		TextArea records = new TextArea();
+		records.setMaxWidth(400);
+		records.setEditable(false);
+		seeRecords.setTop(secondaryTitle);
+		seeRecords.setCenter(records);
+		HBox secondaryButtonBox = new HBox();
+		Button back = new Button("Back to Form");
+		back.setOnAction(e->{
+			stage.setScene(scene);
+		});
+		secondaryButtonBox.getChildren().add(back);
+		seeRecords.setBottom(secondaryButtonBox);
+		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
+		secondaryButtonBox.setAlignment(Pos.CENTER);
+		Scene viewScene = new Scene(seeRecords, 400, 400);
+		next.setOnAction(e->{
+			stage.setScene(viewScene);
+			
+		});	
+		
 		}
 
 public static void main(String[] args) {
