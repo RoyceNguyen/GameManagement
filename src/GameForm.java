@@ -188,12 +188,12 @@ public class GameForm extends Application{
 		
 		//create second scene to view records
 		BorderPane seeRecords = new BorderPane();
-		//text view to insert record into
 		Text secondaryTitle = new Text("View Records");
 		//sets the BorderPane to center alignment
 		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
 		//sets padding to the BorderPane
 		seeRecords.setPadding(new Insets(10,10,10,10));
+		//creates Text area to view game records 
 		TextArea records = new TextArea();
 		records.setMaxWidth(400);
 		records.setEditable(false);
