@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 !SESSION 2016-11-17 12:37:45.385 -----------------------------------------------
+=======
+!SESSION 2016-11-10 16:22:59.197 -----------------------------------------------
+>>>>>>> formWithCheckbox
 eclipse.buildId=4.5.2.M20160212-1500
 java.version=1.8.0_101
 java.vendor=Oracle Corporation
 BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+<<<<<<< HEAD
 Framework arguments:  -product org.eclipse.epp.package.jee.product -keyring /Users/web/.eclipse_keyring -showlocation
 Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -keyring /Users/web/.eclipse_keyring -showlocation
 
@@ -13,6 +18,15 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 !MESSAGE Could not bind a reference of component org.eclipse.fx.core.internal.JUtilLoggerFactory. The reference is: Reference[name = registerHandler, interface = java.util.logging.Handler, policy = dynamic, policy-option = greedy, cardinality = 0..n, target = null, bind = registerHandler, unbind = unregisterHandler, updated = null]
 
 !ENTRY org.eclipse.oomph.p2.core 4 0 2016-11-17 12:38:12.379
+=======
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/web/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -data /Users/web/Desktop/Game/GameManagement -product org.eclipse.epp.package.jee.product -keyring /Users/web/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-11-10 16:23:06.222
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.oomph.p2.core 4 0 2016-11-10 16:23:21.553
+>>>>>>> formWithCheckbox
 !MESSAGE Acquisition of lock file /Users/install/.p2/pools.info.lock timed out
 !STACK 0
 java.lang.RuntimeException: Acquisition of lock file /Users/install/.p2/pools.info.lock timed out
