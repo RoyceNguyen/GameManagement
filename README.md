@@ -1,6 +1,6 @@
 **
 Local MySQL Database 
-
+NOTE : php.scweb.ca cant be accessed at home , you can however download MySQL server on your home computer and test it there 
 Create a class named Const.java or download the zip folder from Cai and edit 
 
 Put in your phpmyadmin username and password

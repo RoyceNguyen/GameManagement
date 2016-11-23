@@ -29,6 +29,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -181,7 +183,38 @@ public class GameForm extends Application{
 		stage.setTitle("Game Management");
 		stage.setScene(scene);
 		stage.show();
-		}
+
+		
+		//create second scene to view records
+		BorderPane seeRecords = new BorderPane();
+		Text secondaryTitle = new Text("View Records");
+		//sets the BorderPane to center alignment
+		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
+		//sets padding to the BorderPane
+		seeRecords.setPadding(new Insets(10,10,10,10));
+		//creates Text area to view game records 
+		TextArea records = new TextArea();
+		//sets the width to the text field
+		records.setMaxWidth(400);
+		records.setEditable(false);
+		seeRecords.setTop(secondaryTitle);
+		seeRecords.setCenter(records);
+		HBox secondaryButtonBox = new HBox();
+		Button back = new Button("Back to Form");
+		back.setOnAction(e->{
+			stage.setScene(scene);
+		});
+		secondaryButtonBox.getChildren().add(back);
+		seeRecords.setBottom(secondaryButtonBox);
+		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
+		secondaryButtonBox.setAlignment(Pos.CENTER);
+		Scene viewScene = new Scene(seeRecords, 400, 400);
+		next.setOnAction(e->{
+			stage.setScene(viewScene);
+			
+		});	
+		
+}
 
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
