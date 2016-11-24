@@ -99,7 +99,11 @@ public class GameForm extends Application{
 				GridPane.setConstraints(rating, 1, 1);
 				grid.getChildren().add(rating);
 				
-				//Create the gameDesc text area
+				/**
+				 * @author Blaze 
+				 * Created a TextArea for the description of the game that 
+				 * the user may edit
+				 */
 				final TextArea gameDesc = new TextArea();
 				Label gameDescLabel = new Label("Game Description:");
 				//gameDesc.setPrefHeight(20);
