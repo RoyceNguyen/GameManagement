@@ -137,12 +137,19 @@ public class GameForm extends Application{
 				ft.setAutoReverse(false);
 				ft.play();
 		
-		//create top hbox for the title image to sit in
+				/**
+				 * @author Blaze 
+				 * Created an HBox to place the image title in and sets
+				 * a background color the the HBox
+				 */
 		HBox top = new HBox();
 		//top.setPadding(new Insets(10,10,10,10));
 		top.setSpacing(10);
 		top.setStyle("-fx-background-color: #333333;");
-		//add image view to the hbox
+		/**
+		 * @author Blaze 
+		 * Adds the Image View to the HBox and sets the alignment to Center
+		 */
 		top.getChildren().add(imgVw);
 		top.setAlignment(Pos.CENTER);
 		
