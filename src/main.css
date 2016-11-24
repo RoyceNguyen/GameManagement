@@ -1,0 +1,26 @@
+.root {
+	-fx-background-color: #3BB258;
+}
+
+.button{
+	-fx-font-size: 12pt;
+	-fx-background-radius: 10;
+	-fx-background-color: #3BB258;
+	-fx-text-fill: #ffffff;
+	-fx-border-color: #000000;
+	-fx-border-radius: 10;
+	-fx-padding: 10;
+	-fx-font-family: Osaka;
+}
+
+.button:hover{
+	-fx-background-color: #558b2f;
+}
+
+.labels{
+	-fx-fill: #ffffff;
+	-fx-font-size: 11pt;
+	-fx-font-family: Osaka;
+	text-transform: uppercase;
+}
+
