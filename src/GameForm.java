@@ -75,7 +75,10 @@ public class GameForm extends Application{
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				
-				
+				/**
+				 * @author Blaze 
+				 *Created a TextField for the amount of hours played
+				 */
 				final TextField hours = new TextField();
 				Label hoursLabel = new Label("Hours Played:");
 				GridPane.setConstraints(hoursLabel, 0, 2);
