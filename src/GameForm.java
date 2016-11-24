@@ -1,3 +1,4 @@
+import java.sql.Connection;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -31,6 +32,17 @@ import javafx.util.Duration;
 
 public class GameForm extends Application{
 
+	public static TextField name;
+	public static TextField hours;
+	public static TextField rating;
+	public static TextArea gameDesc;
+	public static CheckBox box1, box2, box3;
+	public static Connection connection;
+	InitializeDB db = new InitializeDB();
+	GrabData gd = new GrabData();
+	InsertData insert = new InsertData();
+	Thread thread;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		//Create border pane for the whole form
@@ -54,20 +66,15 @@ public class GameForm extends Application{
 	         grid.getColumnConstraints().add(row2);
 	         ColumnConstraints row3 = new ColumnConstraints(300);
 	         grid.getColumnConstraints().add(row3);
-	         //Creating a GridPane container
-	         
-			grid.setPadding(new Insets(10, 10, 10, 10));
+	        grid.setPadding(new Insets(10, 10, 10, 10));
 			grid.setVgap(5);
 			grid.setHgap(5);
-			
-				
-				//Create the gameTitle text field
 			/**
 			 * @author Blaze 
 			 * Created a TextField to enter the name of the title
 			 * of the game played.
 			 */
-				final TextField name = new TextField();
+				name = new TextField();
 				Label nameLabel = new Label("Game Title:");
 				GridPane.setConstraints(nameLabel, 0, 0);
 				grid.getChildren().add(nameLabel);
@@ -77,12 +84,11 @@ public class GameForm extends Application{
 				nameLabel.getStyleClass().add("labels");
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
-				
 				/**
 				 * @author Blaze 
 				 *Created a TextField for the amount of hours played
 				 */
-				final TextField hours = new TextField();
+				hours = new TextField();
 				Label hoursLabel = new Label("Hours Played:");
 				GridPane.setConstraints(hoursLabel, 0, 2);
 				grid.getChildren().add(hoursLabel);
@@ -90,12 +96,11 @@ public class GameForm extends Application{
 				hours.setPromptText("Enter total hours played.");
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
-				
 				/**
 				 * @author Blaze 
 				 * Created a TextField for the Rating TextField
 				 */
-				final TextField rating = new TextField();
+				rating = new TextField();
 				Label ratingLabel = new Label("Rating:");
 				GridPane.setConstraints(ratingLabel, 0, 1);
 				ratingLabel.getStyleClass().add("labels");
@@ -103,13 +108,12 @@ public class GameForm extends Application{
 				rating.setPromptText("Rate game out of 10.");
 				GridPane.setConstraints(rating, 1, 1);
 				grid.getChildren().add(rating);
-				
 				/**
 				 * @author Blaze 
 				 * Created a TextArea for the description of the game that 
 				 * the user may edit
 				 */
-				final TextArea gameDesc = new TextArea();
+				gameDesc = new TextArea();
 				Label gameDescLabel = new Label("Game Description:");
 				gameDescLabel.getStyleClass().add("labels");
 				GridPane.setConstraints(gameDescLabel, 0, 3);
@@ -173,7 +177,7 @@ public class GameForm extends Application{
 		//Label gameGenre = new Label("Select the type(s) of games you have played:");
 		//list view that lists board game genres 
 		//ListView<String> genre = new ListView<String>();
-		//genre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		//g1enre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		//ObservableList<String> genres = FXCollections.observableArrayList(
 		//"Board Games","Video Games","Card Games");
 		//genre.setPrefHeight(100);
@@ -190,7 +194,7 @@ public class GameForm extends Application{
 		 */
 
 				VBox vbox = new VBox();
-				CheckBox box1, box2, box3;
+				
 				box1 = new CheckBox("Video Games");
 				box2 = new CheckBox("Card Games");
 				box3 = new CheckBox("Board Games");
@@ -215,13 +219,7 @@ public class GameForm extends Application{
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
-				name.clear();
-				hours.clear();
-				rating.clear();
-				gameDesc.clear();
-				box1.setSelected(false);
-				box2.setSelected(false);
-				box3.setSelected(false);
+				clearForm();
 			}
 		}
 		);
@@ -332,7 +330,16 @@ public class GameForm extends Application{
 		viewScene.getStylesheets().add("main.css");
 		scene.getStylesheets().add("main.css");
 }
-
+	protected void clearForm(){
+		name.clear();
+		hours.clear();
+		rating.clear();
+		gameDesc.clear();
+		box1.setSelected(false);
+		box2.setSelected(false);
+		box3.setSelected(false);
+	}
+	
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
 	Application.launch(args);
