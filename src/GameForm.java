@@ -42,7 +42,6 @@ public class GameForm extends Application{
 		 * Created buttons for the types of games to be checked off
 		 */
 		
-		//Creating a GridPane container
 		GridPane grid = new GridPane();
 		for (int i = 0; i < 4; i++) {
 	         RowConstraints row = new RowConstraints(35);
@@ -55,11 +54,17 @@ public class GameForm extends Application{
 	         ColumnConstraints row3 = new ColumnConstraints(300);
 	         grid.getColumnConstraints().add(row3);
 	         //Creating a GridPane container
+	         
 			grid.setPadding(new Insets(10, 10, 10, 10));
 			grid.setVgap(5);
 			grid.setHgap(5);
 				
 				//Create the gameTitle text field
+			/**
+			 * @author Blaze 
+			 * Created a TextField to enter the name of the title
+			 * of the game played.
+			 */
 				final TextField name = new TextField();
 				Label nameLabel = new Label("Game Title:");
 				GridPane.setConstraints(nameLabel, 0, 0);
@@ -70,7 +75,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				
-				//Create the hrsPlayed text field
+				
 				final TextField hours = new TextField();
 				Label hoursLabel = new Label("Hours Played:");
 				GridPane.setConstraints(hoursLabel, 0, 2);
@@ -79,7 +84,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
 				
-				//Create the rating text field
+				
 				final TextField rating = new TextField();
 				Label ratingLabel = new Label("Rating:");
 				GridPane.setConstraints(ratingLabel, 0, 1);
