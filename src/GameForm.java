@@ -43,7 +43,6 @@ public class GameForm extends Application{
 		 * Created external stylesheet for css throughout the application
 		 */
 		
-		//Creating a GridPane container
 		GridPane grid = new GridPane();
 		for (int i = 0; i < 4; i++) {
 	         RowConstraints row = new RowConstraints(35);
@@ -56,11 +55,18 @@ public class GameForm extends Application{
 	         ColumnConstraints row3 = new ColumnConstraints(300);
 	         grid.getColumnConstraints().add(row3);
 	         //Creating a GridPane container
-			 grid.setPadding(new Insets(10, 10, 10, 10));
-			 grid.setVgap(5);
-			 grid.setHgap(5);
+	         
+			grid.setPadding(new Insets(10, 10, 10, 10));
+			grid.setVgap(5);
+			grid.setHgap(5);
+			
 				
 				//Create the gameTitle text field
+			/**
+			 * @author Blaze 
+			 * Created a TextField to enter the name of the title
+			 * of the game played.
+			 */
 				final TextField name = new TextField();
 				Label nameLabel = new Label("Game Title:");
 				GridPane.setConstraints(nameLabel, 0, 0);
@@ -72,7 +78,10 @@ public class GameForm extends Application{
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				
-				//Create the hrsPlayed text field
+				/**
+				 * @author Blaze 
+				 *Created a TextField for the amount of hours played
+				 */
 				final TextField hours = new TextField();
 				Label hoursLabel = new Label("Hours Played:");
 				GridPane.setConstraints(hoursLabel, 0, 2);
@@ -82,7 +91,10 @@ public class GameForm extends Application{
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
 				
-				//Create the rating text field
+				/**
+				 * @author Blaze 
+				 * Created a TextField for the Rating TextField
+				 */
 				final TextField rating = new TextField();
 				Label ratingLabel = new Label("Rating:");
 				GridPane.setConstraints(ratingLabel, 0, 1);
@@ -92,7 +104,11 @@ public class GameForm extends Application{
 				GridPane.setConstraints(rating, 1, 1);
 				grid.getChildren().add(rating);
 				
-				//Create the gameDesc text area
+				/**
+				 * @author Blaze 
+				 * Created a TextArea for the description of the game that 
+				 * the user may edit
+				 */
 				final TextArea gameDesc = new TextArea();
 				Label gameDescLabel = new Label("Game Description:");
 				gameDescLabel.getStyleClass().add("labels");
@@ -102,14 +118,23 @@ public class GameForm extends Application{
 				GridPane.setConstraints(gameDesc, 1, 4);
 				grid.getChildren().add(gameDesc);
 				
-				//add title image and put it in an image view
+				/**
+				 * @author Blaze 
+				 * Added an image and put it in an ImageView
+				 */
 				Image img = new Image("checkers.jpg");
 				ImageView imgVw = new ImageView();
 				imgVw.setImage(img);
-				//set the size of the title image view
+				/**
+				 * @author Blaze 
+				 * Sets the height and width of the image
+				 */
 				imgVw.setFitWidth(500);
 				imgVw.setFitHeight(100);
-				//create animation for image
+				/**
+				 * @author Blaze 
+				 * Created an animation to the image that will fade it
+				 */
 				FadeTransition ft = new FadeTransition(Duration.millis(4000), imgVw);
 				ft.setFromValue(0.1);
 				ft.setToValue(1.0);
@@ -117,22 +142,53 @@ public class GameForm extends Application{
 				ft.setAutoReverse(false);
 				ft.play();
 		
-		//create top hbox for the title image to sit in
+				/**
+				 * @author Blaze 
+				 * Created an HBox to place the image title in and sets
+				 * a background color the the HBox
+				 */
 		HBox top = new HBox();
 		//top.setPadding(new Insets(10,10,10,10));
 		top.setSpacing(10);
 		top.setStyle("-fx-background-color: #333333;");
-		//add image view to the hbox
+		/**
+		 * @author Blaze 
+		 * Adds the Image View to the HBox and sets the alignment to Center
+		 */
 		top.getChildren().add(imgVw);
 		top.setAlignment(Pos.CENTER);
 		
-		//create bottom hbox for the continue and clear buttons to sit in
+		/**
+		 * @author Blaze 
+		 * Created an HBox to add the Clear and Next buttons
+		 * Sets Padding and spacing to the Hbox
+		 * Sets a background color to the Hbox
+		 */
 		HBox bottom = new HBox();
 		bottom.setPadding(new Insets(10,10,10,10));
 		bottom.setSpacing(10);
 		bottom.setStyle("-fx-background-color: #333333;");
 
-		//Create the CheckBox buttons for types of games to be checked off
+		//label for listview
+		//Label gameGenre = new Label("Select the type(s) of games you have played:");
+		//list view that lists board game genres 
+		//ListView<String> genre = new ListView<String>();
+		//genre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		//ObservableList<String> genres = FXCollections.observableArrayList(
+		//"Board Games","Video Games","Card Games");
+		//genre.setPrefHeight(100);
+		//genre.setItems(genres);
+		//VBox intro = new VBox();
+		//intro.getChildren().addAll(grid,gameGenre,genre);
+		
+		
+		/**
+		 * @author Blaze 
+		 * Created a VBox to add the checkboxes to
+		 * Sets padding to the Label
+		 * Sets padding to each button
+		 */
+
 				VBox vbox = new VBox();
 				CheckBox box1, box2, box3;
 				box1 = new CheckBox("Video Games");
@@ -155,7 +211,6 @@ public class GameForm extends Application{
 				grid.getChildren().add(vbox);
 		Button clear = new Button("CLEAR");
 		clear.setPrefSize(100, 20);
-		//add buttons to the hbox
 		clear.setOnMouseClicked(new EventHandler<Event>(){
 			@Override
 			public void handle(Event event) {
@@ -170,6 +225,11 @@ public class GameForm extends Application{
 			}
 		}
 		);
+		
+		/**
+		 * @author Blaze 
+		 * Creates "Next" Button
+		 */
 		//Brings you to the second scene
 		Button next = new Button("NEXT");
 		next.setPrefSize(100, 20);
@@ -188,17 +248,36 @@ public class GameForm extends Application{
 		border.setTop(top);
 		border.setCenter(grid);
 		border.setBottom(bottom);
-		//set the scene with the border pane
+		/**
+		 * @author Blaze 
+		 * Creates scene with BorderPane along with width and height of Pane
+		 */
 		Scene scene = new Scene(border, 800, 800);
 		stage.setTitle("Game Management");
 		stage.setScene(scene);
 		stage.show();
 
-		//create second scene to view records
+		
+		/**
+		 * @author Tyler 
+		 * Creates a second BorderPane for the records submitted
+		 */
 		BorderPane seeRecords = new BorderPane();
 		Text secondaryTitle = new Text("View Records");
-		//sets the BorderPane to center alignment
+		/**
+		 * @author Tyler 
+		 * Sets alignment of the Pane to center
+		 */
 		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
+		/**
+		 * @author Tyler 
+		 * Sets padding to the BorderPane
+		 */
+		seeRecords.setPadding(new Insets(10,10,10,10));
+		/**
+		 * @author Tyler 
+		 * Creates a non-editable TextArea to show records
+		 */ 
 		//sets padding to the BorderPane
 		//seeRecords.setPadding(new Insets(0,0,0,0));
 		
@@ -226,7 +305,6 @@ public class GameForm extends Application{
 		
 		//creates Text area to view game records 
 		TextArea records = new TextArea();
-		//sets the width to the text field
 		records.setMaxWidth(400);
 		records.setEditable(false);
 		seeRecords.setTop(top2);
