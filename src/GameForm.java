@@ -153,7 +153,12 @@ public class GameForm extends Application{
 		top.getChildren().add(imgVw);
 		top.setAlignment(Pos.CENTER);
 		
-		//create bottom hbox for the continue and clear buttons to sit in
+		/**
+		 * @author Blaze 
+		 * Created an HBox to add the Clear and Next buttons
+		 * Sets Padding and spacing to the Hbox
+		 * Sets a background color to the Hbox
+		 */
 		HBox bottom = new HBox();
 		bottom.setPadding(new Insets(10,10,10,10));
 		bottom.setSpacing(10);
