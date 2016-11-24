@@ -52,8 +52,8 @@ public class GameForm extends Application {
 		//Create the gameTitle text field
 		final TextField gameTitle = new TextField();
 		Label gameTitleLabel = new Label("Game Title:");
-		gameTitleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-		gameTitleLabel.setTextFill(Color.LIGHTSLATEGRAY);
+		//gameTitleLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+		//gameTitleLabel.setTextFill(Color.LIGHTSLATEGRAY);
 		GridPane.setConstraints(gameTitleLabel, 0, 0);
 		grid.getChildren().add(gameTitleLabel);
 		gameTitle.setPromptText("Enter the game title.");
@@ -65,8 +65,8 @@ public class GameForm extends Application {
 		//Create the gameRating text field
 		final TextField gameRating = new TextField();
 		Label gameRatingLabel = new Label("Game Rating:");
-		gameRatingLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-		gameRatingLabel.setTextFill(Color.LIGHTSLATEGRAY);
+		//gameRatingLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+		//gameRatingLabel.setTextFill(Color.LIGHTSLATEGRAY);
 		GridPane.setConstraints(gameRatingLabel, 0, 1);
 		grid.getChildren().add(gameRatingLabel);
 		gameRating.setPromptText("Enter the game rating.");
@@ -76,8 +76,8 @@ public class GameForm extends Application {
 		//Create the hoursPlayed text field
 		final TextField hoursPlayed = new TextField();
 		Label hoursPlayedLabel = new Label("Hours Played:");
-		hoursPlayedLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-		hoursPlayedLabel.setTextFill(Color.LIGHTSLATEGRAY);
+		//hoursPlayedLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+		//hoursPlayedLabel.setTextFill(Color.LIGHTSLATEGRAY);
 		GridPane.setConstraints(hoursPlayedLabel, 0, 2);
 		grid.getChildren().add(hoursPlayedLabel);
 		hoursPlayed.setPromptText("Enter the amount of hours played.");
@@ -88,8 +88,8 @@ public class GameForm extends Application {
 		final TextField gameDesc = new TextField();
 		Label gameDescLabel = new Label("Game Description:");
 		//gameDesc.setPrefHeight(20);
-		gameDescLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-		gameDescLabel.setTextFill(Color.LIGHTSLATEGRAY);
+		//gameDescLabel.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+		//gameDescLabel.setTextFill(Color.LIGHTSLATEGRAY);
 		GridPane.setConstraints(gameDescLabel, 0, 3);
 		grid.getChildren().add(gameDescLabel);
 		gameDesc.setPromptText("Enter a description of the game:");
@@ -103,8 +103,8 @@ public class GameForm extends Application {
 		box2 = new CheckBox("Card Games");
 		box3 = new CheckBox("Board Games");
 		Label type = new Label("Select the types of games");
-		type.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
-		type.setTextFill(Color.LIGHTSLATEGRAY);
+		//type.setFont(Font.font("Times New Roman", FontWeight.BOLD, 16));
+		//type.setTextFill(Color.LIGHTSLATEGRAY);
 		GridPane.setConstraints(type, 2, 0);
 		type.setPadding(new Insets(0, 0, 0, 20));
 		grid.getChildren().add(type);
@@ -117,9 +117,6 @@ public class GameForm extends Application {
 		grid.getChildren().addAll(vbox);
 		GridPane.setConstraints(type, 2, 0);
 		GridPane.setConstraints(vbox, 2, 2);
-		//GridPane.setConstraints(box1, 2, 1);
-		//GridPane.setConstraints(box2, 2, 2);
-		//GridPane.setConstraints(box3, 2, 3);
 		
 		border.setLeft(grid);
 		Scene scene = new Scene(border, 900, 500);
