@@ -40,6 +40,7 @@ public class GameForm extends Application{
 		 * @author Blaze 
 		 * Created a GridPane for some of the form
 		 * Created buttons for the types of games to be checked off
+		 * Created external stylesheet for css throughout the application
 		 */
 		
 		//Creating a GridPane container
@@ -48,16 +49,16 @@ public class GameForm extends Application{
 	         RowConstraints row = new RowConstraints(35);
 	         grid.getRowConstraints().add(row);
 	     }
-	         ColumnConstraints row1 = new ColumnConstraints(120);
+	         ColumnConstraints row1 = new ColumnConstraints(130);
 	         grid.getColumnConstraints().add(row1);
 	         ColumnConstraints row2 = new ColumnConstraints(300);
 	         grid.getColumnConstraints().add(row2);
 	         ColumnConstraints row3 = new ColumnConstraints(300);
 	         grid.getColumnConstraints().add(row3);
 	         //Creating a GridPane container
-			grid.setPadding(new Insets(10, 10, 10, 10));
-			grid.setVgap(5);
-			grid.setHgap(5);
+			 grid.setPadding(new Insets(10, 10, 10, 10));
+			 grid.setVgap(5);
+			 grid.setHgap(5);
 				
 				//Create the gameTitle text field
 				final TextField name = new TextField();
@@ -67,6 +68,7 @@ public class GameForm extends Application{
 				name.setPromptText("Enter the game's title.");
 				name.setPrefColumnCount(10);
 				name.getText();
+				nameLabel.getStyleClass().add("labels");
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				
@@ -75,6 +77,7 @@ public class GameForm extends Application{
 				Label hoursLabel = new Label("Hours Played:");
 				GridPane.setConstraints(hoursLabel, 0, 2);
 				grid.getChildren().add(hoursLabel);
+				hoursLabel.getStyleClass().add("labels");
 				hours.setPromptText("Enter total hours played.");
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
@@ -83,6 +86,7 @@ public class GameForm extends Application{
 				final TextField rating = new TextField();
 				Label ratingLabel = new Label("Rating:");
 				GridPane.setConstraints(ratingLabel, 0, 1);
+				ratingLabel.getStyleClass().add("labels");
 				grid.getChildren().add(ratingLabel);
 				rating.setPromptText("Rate game out of 10.");
 				GridPane.setConstraints(rating, 1, 1);
@@ -91,7 +95,7 @@ public class GameForm extends Application{
 				//Create the gameDesc text area
 				final TextArea gameDesc = new TextArea();
 				Label gameDescLabel = new Label("Game Description:");
-				//gameDesc.setPrefHeight(20);
+				gameDescLabel.getStyleClass().add("labels");
 				GridPane.setConstraints(gameDescLabel, 0, 3);
 				grid.getChildren().add(gameDescLabel);
 				gameDesc.setPromptText("Enter a description of the game:");
@@ -134,7 +138,11 @@ public class GameForm extends Application{
 				box1 = new CheckBox("Video Games");
 				box2 = new CheckBox("Card Games");
 				box3 = new CheckBox("Board Games");
+				box1.getStyleClass().add("labels");
+				box2.getStyleClass().add("labels");
+				box3.getStyleClass().add("labels");
 				Label type = new Label("Select the types of games:");
+				type.getStyleClass().add("labels");
 				GridPane.setConstraints(type, 2, 0);
 				type.setPadding(new Insets(0, 0, 0, 20));
 				grid.getChildren().add(type);
@@ -145,8 +153,7 @@ public class GameForm extends Application{
 				box2.setPadding(new Insets(10, 0, 0, 0));
 				box3.setPadding(new Insets(10, 0, 0, 0));
 				grid.getChildren().add(vbox);
-
-		Button clear = new Button("Clear");
+		Button clear = new Button("CLEAR");
 		clear.setPrefSize(100, 20);
 		//add buttons to the hbox
 		clear.setOnMouseClicked(new EventHandler<Event>(){
@@ -163,9 +170,8 @@ public class GameForm extends Application{
 			}
 		}
 		);
-		
 		//Brings you to the second scene
-		Button next = new Button("Next");
+		Button next = new Button("NEXT");
 		next.setPrefSize(100, 20);
 		//add buttons to the hbox
 		next.setOnMouseClicked(new EventHandler<Event>(){
@@ -175,18 +181,10 @@ public class GameForm extends Application{
 			}
 		}
 		);
-
 		bottom.getChildren().addAll(clear, next);
 		bottom.setAlignment(Pos.CENTER);
 		
 		//create grid pane for the central content of the app
-		//GridPane grid = new GridPane();
-
-		//grid.setStyle("-fx-background-color: #FFFF00;");
-		//add the hboxes and grid pane to the border pane
-
-		grid.setStyle("-fx-background-color: #3BB258;");
-
 		border.setTop(top);
 		border.setCenter(grid);
 		border.setBottom(bottom);
@@ -196,7 +194,6 @@ public class GameForm extends Application{
 		stage.setScene(scene);
 		stage.show();
 
-		
 		//create second scene to view records
 		BorderPane seeRecords = new BorderPane();
 		Text secondaryTitle = new Text("View Records");
@@ -221,11 +218,13 @@ public class GameForm extends Application{
 		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
 		secondaryButtonBox.setAlignment(Pos.CENTER);
 		Scene viewScene = new Scene(seeRecords, 400, 400);
+		
 		next.setOnAction(e->{
 			stage.setScene(viewScene);
 			
 		});	
-		
+		viewScene.getStylesheets().add("main.css");
+		scene.getStylesheets().add("main.css");
 }
 
 public static void main(String[] args) {
