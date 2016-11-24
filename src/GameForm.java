@@ -32,13 +32,16 @@ import javafx.util.Duration;
 
 public class GameForm extends Application{
 
-	TextField name;
-	TextField hours;
-	TextField rating;
-	TextArea gameDesc;
-	CheckBox box1, box2, box3;
-	Connection connection;
-	
+	public static TextField name;
+	public static TextField hours;
+	public static TextField rating;
+	public static TextArea gameDesc;
+	public static CheckBox box1, box2, box3;
+	public static Connection connection;
+	InitializeDB db = new InitializeDB();
+	GrabData gd = new GrabData();
+	InsertData insert = new InsertData();
+	Thread thread;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
