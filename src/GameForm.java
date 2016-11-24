@@ -1,58 +1,75 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class GameForm extends Application{
-	public static Connection connection;
+
+	TextField name;
+	TextField hours;
+	TextField rating;
+	TextArea gameDesc;
+	CheckBox box1, box2, box3;
+	Connection connection;
 	
-	InitializeDB dbTask = new InitializeDB();
-	Thread thread;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
-		thread = new Thread(dbTask);
-		thread.start();
 		//Create border pane for the whole form
 		BorderPane border = new BorderPane();
 		
+		/**
+		 * @author Blaze 
+		 * Created a GridPane for some of the form
+		 * Created buttons for the types of games to be checked off
+		 */
+		
 		//Creating a GridPane container
-				GridPane grid = new GridPane();
-				grid.setPadding(new Insets(10, 10, 10, 10));
-				grid.setVgap(5);
-				grid.setHgap(5);
+		GridPane grid = new GridPane();
+		for (int i = 0; i < 4; i++) {
+	         RowConstraints row = new RowConstraints(35);
+	         grid.getRowConstraints().add(row);
+	     }
+	         ColumnConstraints row1 = new ColumnConstraints(120);
+	         grid.getColumnConstraints().add(row1);
+	         ColumnConstraints row2 = new ColumnConstraints(300);
+	         grid.getColumnConstraints().add(row2);
+	         ColumnConstraints row3 = new ColumnConstraints(300);
+	         grid.getColumnConstraints().add(row3);
+	         //Creating a GridPane container
+			grid.setPadding(new Insets(10, 10, 10, 10));
+			grid.setVgap(5);
+			grid.setHgap(5);
 				
-				//Create the firstName text field
-				final TextField name = new TextField();
+				//Create the gameTitle text field
+				name = new TextField();
 				Label nameLabel = new Label("Game Title:");
 				GridPane.setConstraints(nameLabel, 0, 0);
 				grid.getChildren().add(nameLabel);
@@ -62,23 +79,33 @@ public class GameForm extends Application{
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				
-				//Create the lastName text field
-				final TextField hours = new TextField();
+				//Create the hrsPlayed text field
+				hours = new TextField();
 				Label hoursLabel = new Label("Hours Played:");
-				GridPane.setConstraints(hoursLabel, 2, 0);
+				GridPane.setConstraints(hoursLabel, 0, 2);
 				grid.getChildren().add(hoursLabel);
 				hours.setPromptText("Enter total hours played.");
-				GridPane.setConstraints(hours, 3, 0);
+				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
 				
 				//Create the rating text field
-				final TextField rating = new TextField();
+				rating = new TextField();
 				Label ratingLabel = new Label("Rating:");
 				GridPane.setConstraints(ratingLabel, 0, 1);
 				grid.getChildren().add(ratingLabel);
 				rating.setPromptText("Rate game out of 10.");
 				GridPane.setConstraints(rating, 1, 1);
 				grid.getChildren().add(rating);
+				
+				//Create the gameDesc text area
+				gameDesc = new TextArea();
+				Label gameDescLabel = new Label("Game Description:");
+				//gameDesc.setPrefHeight(20);
+				GridPane.setConstraints(gameDescLabel, 0, 3);
+				grid.getChildren().add(gameDescLabel);
+				gameDesc.setPromptText("Enter a description of the game:");
+				GridPane.setConstraints(gameDesc, 1, 4);
+				grid.getChildren().add(gameDesc);
 				
 				//add title image and put it in an image view
 				Image img = new Image("checkers.jpg");
@@ -111,35 +138,33 @@ public class GameForm extends Application{
 		bottom.setStyle("-fx-background-color: #333333;");
 
 		//label for listview
-		Label gameGenre = new Label("Select the type(s) of games you have played:");
+		//Label gameGenre = new Label("Select the type(s) of games you have played:");
 		//list view that lists board game genres 
-		ListView<String> genre = new ListView<String>();
-		genre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		ObservableList<String> genres = FXCollections.observableArrayList(
-		"Board Games","Video Games","Card Games");
-		genre.setPrefHeight(100);
-		genre.setItems(genres);
-		VBox intro = new VBox();
-		intro.getChildren().addAll(grid,gameGenre,genre);
-		
-
-		Button submit = new Button("Submit");
-		submit.setPrefSize(100, 20);
-		submit.setOnMouseClicked(new EventHandler<Event>(){
-
-			@Override
-			public void handle(Event event) {
-				// TODO Auto-generated method stub
-				try (BufferedWriter bw = new BufferedWriter(new FileWriter("info.txt", true))) {
-					//bw.write("Member name : " + name.getText() + " " + lastName.getText() + ". Gender: " + ((Labeled) group.getSelectedToggle()).getText() +". To contact the member email them at " + hours.getText() + ".");
-					bw.newLine();
-					bw.write("The member's introduction: Their favorite board game genre is " + genre.getSelectionModel().getSelectedItem());
-					bw.newLine();
-			    } catch (IOException e) {
-			        e.printStackTrace();
-			    }
-			}
-		});
+		//ListView<String> genre = new ListView<String>();
+		//g1enre.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		//ObservableList<String> genres = FXCollections.observableArrayList(
+		//"Board Games","Video Games","Card Games");
+		//genre.setPrefHeight(100);
+		//genre.setItems(genres);
+		//VBox intro = new VBox();
+		//intro.getChildren().addAll(grid,gameGenre,genre);
+		//Create the CheckBox buttons for types of games to be checked off
+				VBox vbox = new VBox();
+				
+				box1 = new CheckBox("Video Games");
+				box2 = new CheckBox("Card Games");
+				box3 = new CheckBox("Board Games");
+				Label type = new Label("Select the types of games:");
+				GridPane.setConstraints(type, 2, 0);
+				type.setPadding(new Insets(0, 0, 0, 20));
+				grid.getChildren().add(type);
+				vbox.getChildren().addAll(box1, box2, box3);
+				GridPane.setConstraints(vbox, 2, 2);
+				vbox.setPadding(new Insets(0, 0, 40, 20));
+				box1.setPadding(new Insets(10, 0, 0, 0));
+				box2.setPadding(new Insets(10, 0, 0, 0));
+				box3.setPadding(new Insets(10, 0, 0, 0));
+				grid.getChildren().add(vbox);
 
 		Button clear = new Button("Clear");
 		clear.setPrefSize(100, 20);
@@ -148,10 +173,7 @@ public class GameForm extends Application{
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
-				name.clear();
-				hours.clear();
-				rating.clear();
-				genre.getSelectionModel().clearSelection();
+				clearForm();
 			}
 		}
 		);
@@ -168,7 +190,7 @@ public class GameForm extends Application{
 		}
 		);
 
-		bottom.getChildren().addAll(submit, clear, next);
+		bottom.getChildren().addAll(clear, next);
 		bottom.setAlignment(Pos.CENTER);
 		
 		//create grid pane for the central content of the app
@@ -177,21 +199,61 @@ public class GameForm extends Application{
 		//grid.setStyle("-fx-background-color: #FFFF00;");
 		//add the hboxes and grid pane to the border pane
 
-		intro.setStyle("-fx-background-color: #3BB258;");
+		grid.setStyle("-fx-background-color: #3BB258;");
 
 		border.setTop(top);
-		border.setCenter(intro);
+		border.setCenter(grid);
 		border.setBottom(bottom);
 		//set the scene with the border pane
-		Scene scene = new Scene(border, 540, 500);
+		Scene scene = new Scene(border, 800, 800);
 		stage.setTitle("Game Management");
 		stage.setScene(scene);
 		stage.show();
-		}
 
+		
+		//create second scene to view records
+		BorderPane seeRecords = new BorderPane();
+		Text secondaryTitle = new Text("View Records");
+		//sets the BorderPane to center alignment
+		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
+		//sets padding to the BorderPane
+		seeRecords.setPadding(new Insets(10,10,10,10));
+		//creates Text area to view game records 
+		TextArea records = new TextArea();
+		//sets the width to the text field
+		records.setMaxWidth(400);
+		records.setEditable(false);
+		seeRecords.setTop(secondaryTitle);
+		seeRecords.setCenter(records);
+		HBox secondaryButtonBox = new HBox();
+		Button back = new Button("Back to Form");
+		back.setOnAction(e->{
+			stage.setScene(scene);
+		});
+		secondaryButtonBox.getChildren().add(back);
+		seeRecords.setBottom(secondaryButtonBox);
+		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
+		secondaryButtonBox.setAlignment(Pos.CENTER);
+		Scene viewScene = new Scene(seeRecords, 400, 400);
+		next.setOnAction(e->{
+			stage.setScene(viewScene);
+			
+		});	
+		
+}
+	protected void clearForm(){
+		name.clear();
+		hours.clear();
+		rating.clear();
+		gameDesc.clear();
+		box1.setSelected(false);
+		box2.setSelected(false);
+		box3.setSelected(false);
+	}
+	
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
 	Application.launch(args);
 }
-	
+
 }
