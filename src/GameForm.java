@@ -87,7 +87,10 @@ public class GameForm extends Application{
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
 				
-				
+				/**
+				 * @author Blaze 
+				 * Created a TextField for the Rating TextField
+				 */
 				final TextField rating = new TextField();
 				Label ratingLabel = new Label("Rating:");
 				GridPane.setConstraints(ratingLabel, 0, 1);
