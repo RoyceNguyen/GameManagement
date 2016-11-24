@@ -113,14 +113,23 @@ public class GameForm extends Application{
 				GridPane.setConstraints(gameDesc, 1, 4);
 				grid.getChildren().add(gameDesc);
 				
-				//add title image and put it in an image view
+				/**
+				 * @author Blaze 
+				 * Added an image and put it in an ImageView
+				 */
 				Image img = new Image("checkers.jpg");
 				ImageView imgVw = new ImageView();
 				imgVw.setImage(img);
-				//set the size of the title image view
+				/**
+				 * @author Blaze 
+				 * Sets the height and width of the image
+				 */
 				imgVw.setFitWidth(500);
 				imgVw.setFitHeight(100);
-				//create animation for image
+				/**
+				 * @author Blaze 
+				 * Created an animation to the image that will fade it
+				 */
 				FadeTransition ft = new FadeTransition(Duration.millis(4000), imgVw);
 				ft.setFromValue(0.1);
 				ft.setToValue(1.0);
