@@ -202,7 +202,6 @@ public class GameForm extends Application{
 
 		Button clear = new Button("Clear");
 		clear.setPrefSize(100, 20);
-		//add buttons to the hbox
 		clear.setOnMouseClicked(new EventHandler<Event>(){
 			@Override
 			public void handle(Event event) {
@@ -218,7 +217,10 @@ public class GameForm extends Application{
 		}
 		);
 		
-		//Brings you to the second scene
+		/**
+		 * @author Blaze 
+		 * Creates "Next" Button
+		 */
 		Button next = new Button("Next");
 		next.setPrefSize(100, 20);
 		//add buttons to the hbox
@@ -244,23 +246,37 @@ public class GameForm extends Application{
 		border.setTop(top);
 		border.setCenter(grid);
 		border.setBottom(bottom);
-		//set the scene with the border pane
+		/**
+		 * @author Blaze 
+		 * Creates scene with BorderPane along with width and height of Pane
+		 */
 		Scene scene = new Scene(border, 800, 800);
 		stage.setTitle("Game Management");
 		stage.setScene(scene);
 		stage.show();
 
 		
-		//create second scene to view records
+		/**
+		 * @author Tyler 
+		 * Creates a second BorderPane for the records submitted
+		 */
 		BorderPane seeRecords = new BorderPane();
 		Text secondaryTitle = new Text("View Records");
-		//sets the BorderPane to center alignment
+		/**
+		 * @author Tyler 
+		 * Sets alignment of the Pane to center
+		 */
 		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
-		//sets padding to the BorderPane
+		/**
+		 * @author Tyler 
+		 * Sets padding to the BorderPane
+		 */
 		seeRecords.setPadding(new Insets(10,10,10,10));
-		//creates Text area to view game records 
+		/**
+		 * @author Tyler 
+		 * Creates a non-editable TextArea to show records
+		 */ 
 		TextArea records = new TextArea();
-		//sets the width to the text field
 		records.setMaxWidth(400);
 		records.setEditable(false);
 		seeRecords.setTop(secondaryTitle);
