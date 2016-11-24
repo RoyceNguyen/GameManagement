@@ -175,7 +175,14 @@ public class GameForm extends Application{
 		//genre.setItems(genres);
 		//VBox intro = new VBox();
 		//intro.getChildren().addAll(grid,gameGenre,genre);
-		//Create the CheckBox buttons for types of games to be checked off
+		
+		
+		/**
+		 * @author Blaze 
+		 * Created a VBox to add the checkboxes to
+		 * Sets padding to the Label
+		 * Sets padding to each button
+		 */
 				VBox vbox = new VBox();
 				CheckBox box1, box2, box3;
 				box1 = new CheckBox("Video Games");
