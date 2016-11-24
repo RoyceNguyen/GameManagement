@@ -200,14 +200,38 @@ public class GameForm extends Application{
 		//sets the BorderPane to center alignment
 		seeRecords.setAlignment(secondaryTitle, Pos.CENTER);
 		//sets padding to the BorderPane
-		seeRecords.setPadding(new Insets(10,10,10,10));
+		//seeRecords.setPadding(new Insets(0,0,0,0));
+		
+		//add image view for second scene with title image
+		ImageView imgVw2 = new ImageView();
+		imgVw2.setImage(img);
+		//set the size of the title image view
+		imgVw2.setFitWidth(500);
+		imgVw2.setFitHeight(100);
+		//create animation for image
+		FadeTransition ft2 = new FadeTransition(Duration.millis(4000), imgVw2);
+		ft2.setFromValue(0.1);
+		ft2.setToValue(1.0);
+		ft2.setCycleCount(1);
+		ft2.setAutoReverse(false);
+		ft2.play();
+
+		//create top hbox for the title image to sit in
+		HBox top2 = new HBox();
+		top2.setSpacing(10);
+		top2.setStyle("-fx-background-color: #333333;");
+		//add image view to the hbox
+		top2.getChildren().add(imgVw2);
+		top2.setAlignment(Pos.CENTER);
+		
 		//creates Text area to view game records 
 		TextArea records = new TextArea();
 		//sets the width to the text field
 		records.setMaxWidth(400);
 		records.setEditable(false);
-		seeRecords.setTop(secondaryTitle);
+		seeRecords.setTop(top2);
 		seeRecords.setCenter(records);
+		seeRecords.setStyle("-fx-background-color: #3BB258;");
 		HBox secondaryButtonBox = new HBox();
 		Button back = new Button("Back to Form");
 		back.setOnAction(e->{
@@ -217,8 +241,12 @@ public class GameForm extends Application{
 		seeRecords.setBottom(secondaryButtonBox);
 		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
 		secondaryButtonBox.setAlignment(Pos.CENTER);
-		Scene viewScene = new Scene(seeRecords, 400, 400);
 		
+		secondaryButtonBox.setPadding(new Insets(10,10,10,10));
+		secondaryButtonBox.setSpacing(10);
+		secondaryButtonBox.setStyle("-fx-background-color: #333333;");
+		Scene viewScene = new Scene(seeRecords, 800, 800);
+
 		next.setOnAction(e->{
 			stage.setScene(viewScene);
 			
