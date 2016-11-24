@@ -1,3 +1,46 @@
+**
+Local MySQL Database 
+NOTE : php.scweb.ca cant be accessed at home , you can however download MySQL server on your home computer and test it there 
+Create a class named Const.java or download the zip folder from Cai and edit 
+
+Put in your phpmyadmin username and password
+
+	public class Const {
+
+	public static final String USERNAME = "username";
+	
+	public static final String PASSWORD = "password";
+	}
+ 
+ switch to the form and add in 
+ 
+ 	protected void initializeDB(){
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://php.scweb.ca/<YOURUSERNAME>db?useSSL=false", Const.USERNAME, Const.PASSWORD);
+            statement = connection.createStatement();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+ 
+change <Yourusername> to your phpmyadmin username 
+
+go to phpmyadmin , goto yourusernamedb , go so SQL and run 
+
+create table GuestBook (
+  guest_id INT NOT NULL AUTO_INCREMENT,
+  fname VARCHAR(64) NOT NULL,
+  lname VARCHAR(64) NOT NULL,
+  location VARCHAR(64) NOT NULL,
+  visit_date TIMESTAMP NOT NULL DEFAULT now(),
+  PRIMARY KEY(guest_id)
+  );	
+  
+ test and run the program
+
+**
 Group project for Java class.
 
 Git Config Instructions
