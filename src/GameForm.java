@@ -298,7 +298,7 @@ public class GameForm extends Application{
 		ImageView imgVw2 = new ImageView();
 		imgVw2.setImage(img);
 		//set the size of the title image view
-		imgVw2.setFitWidth(600);
+		imgVw2.setFitWidth(550);
 		imgVw2.setFitHeight(100);
 		//create animation for image
 		FadeTransition ft2 = new FadeTransition(Duration.millis(4000), imgVw2);
@@ -318,7 +318,7 @@ public class GameForm extends Application{
 		
 		//creates Text area to view game records 
 		TextArea records = new TextArea();
-		records.setMaxWidth(600);
+		records.setMaxWidth(550);
 		records.setEditable(false);
 		seeRecords.setTop(top2);
 		seeRecords.setCenter(records);
@@ -330,6 +330,15 @@ public class GameForm extends Application{
 			ft.play();
 		});
 		secondaryButtonBox.getChildren().add(back);
+		
+		BorderPane legend = new BorderPane();
+		HBox legendBox = new HBox();
+		Label legendTitle = new Label("Legend");
+		legendBox.getChildren().add(legendTitle);
+		legendTitle.setAlignment(Pos.TOP_LEFT);
+		legend.setTop(legendBox);
+		seeRecords.setRight(legend);
+		
 		seeRecords.setBottom(secondaryButtonBox);
 		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
 		secondaryButtonBox.setAlignment(Pos.CENTER);
