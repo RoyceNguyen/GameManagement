@@ -70,7 +70,7 @@ public class GameForm extends Application{
 			grid.setVgap(5);
 			grid.setHgap(5);
 			/**
-			 * @author Blaze 
+			 * @author Jared 
 			 * Created a TextField to enter the name of the title
 			 * of the game played.
 			 */
@@ -85,7 +85,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 *Created a TextField for the amount of hours played
 				 */
 				hours = new TextField();
@@ -97,7 +97,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created a TextField for the Rating TextField
 				 */
 				rating = new TextField();
@@ -109,7 +109,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(rating, 1, 1);
 				grid.getChildren().add(rating);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created a TextArea for the description of the game that 
 				 * the user may edit
 				 */
@@ -123,20 +123,20 @@ public class GameForm extends Application{
 				grid.getChildren().add(gameDesc);
 				
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Added an image and put it in an ImageView
 				 */
 				Image img = new Image("checkers.jpg");
 				ImageView imgVw = new ImageView();
 				imgVw.setImage(img);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Sets the height and width of the image
 				 */
 				imgVw.setFitWidth(500);
 				imgVw.setFitHeight(100);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created an animation to the image that will fade it
 				 */
 				FadeTransition ft = new FadeTransition(Duration.millis(4000), imgVw);
@@ -147,7 +147,7 @@ public class GameForm extends Application{
 				ft.play();
 		
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created an HBox to place the image title in and sets
 				 * a background color the the HBox
 				 */
@@ -156,14 +156,14 @@ public class GameForm extends Application{
 		top.setSpacing(10);
 		top.setStyle("-fx-background-color: #333333;");
 		/**
-		 * @author Blaze 
+		 * @author Jared 
 		 * Adds the Image View to the HBox and sets the alignment to Center
 		 */
 		top.getChildren().add(imgVw);
 		top.setAlignment(Pos.CENTER);
 		
 		/**
-		 * @author Blaze 
+		 * @author Jared 
 		 * Created an HBox to add the Clear and Next buttons
 		 * Sets Padding and spacing to the Hbox
 		 * Sets a background color to the Hbox
@@ -237,9 +237,24 @@ public class GameForm extends Application{
 			public void handle(Event event) {
 				//stage.setScene(/*NEW SCENE HERE*/);
 			}
-		}
-		);
-		bottom.getChildren().addAll(clear, next);
+		});
+		
+		/**
+		 * @author Jared 
+		 * Creates "Submit" Button
+		 */
+		//Brings you to the second scene
+		Button submit = new Button("SUBMIT");
+		submit.setPrefSize(100, 20);
+		//add buttons to the hbox
+		submit.setOnMouseClicked(new EventHandler<Event>(){
+			@Override
+			public void handle(Event event) {
+				/*Submit Functionality HERE*/
+			}
+		});
+		
+		bottom.getChildren().addAll(clear, submit, next);
 		bottom.setAlignment(Pos.CENTER);
 		
 		//create grid pane for the central content of the app
@@ -247,7 +262,7 @@ public class GameForm extends Application{
 		border.setCenter(grid);
 		border.setBottom(bottom);
 		/**
-		 * @author Blaze 
+		 * @author Jared 
 		 * Creates scene with BorderPane along with width and height of Pane
 		 */
 		Scene scene = new Scene(border, 800, 500);
