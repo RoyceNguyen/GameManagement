@@ -1,11 +1,13 @@
 import java.sql.Connection;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -347,7 +349,7 @@ public class GameForm extends Application{
 		viewScene.getStylesheets().add("main.css");
 		scene.getStylesheets().add("main.css");
 }
-	protected void clearForm(){
+	public static void  clearForm(){
 		name.clear();
 		hours.clear();
 		rating.clear();
@@ -356,7 +358,39 @@ public class GameForm extends Application{
 		box2.setSelected(false);
 		box3.setSelected(false);
 	}
-	
+	public static boolean formEmpty(){
+		boolean fieldEmpty = false;
+		if(name.getText().trim().isEmpty()){
+			 shake(name);
+			 fieldEmpty = true;
+		}
+		if(hours.getText().trim().isEmpty()){
+			shake(hours);
+			fieldEmpty = true;
+		}
+		if(rating.getText().trim().isEmpty()){
+			shake(rating);
+			fieldEmpty = true;
+		}
+		if(gameDesc.getText().trim().isEmpty()){
+			shake(gameDesc);
+			fieldEmpty = true;
+		}
+		if((!box1.isSelected())&&(!box2.isSelected())&&(!box3.isSelected())){
+			shake(box1);
+			shake(box2);
+			shake(box3);
+			fieldEmpty = true;
+		}
+		return fieldEmpty;
+	}
+	public static void shake(Node textfield){
+		TranslateTransition shake = new TranslateTransition(Duration.millis(20), textfield);
+		shake.setByX(22);
+		shake.setCycleCount(2);
+		shake.setAutoReverse(true);
+		shake.play();
+	}
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
 	Application.launch(args);
