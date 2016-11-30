@@ -38,6 +38,7 @@ public class GameForm extends Application{
 	public static TextField hours;
 	public static TextField rating;
 	public static TextArea gameDesc;
+	public static TextArea records;
 	public static CheckBox box1, box2, box3;
 	public static Connection connection;
 	InitializeDB db = new InitializeDB();
@@ -320,7 +321,7 @@ public class GameForm extends Application{
 		top2.setAlignment(Pos.CENTER);
 		
 		//creates Text area to view game records 
-		TextArea records = new TextArea();
+		records = new TextArea();
 		records.setMaxWidth(600);
 		records.setEditable(false);
 		seeRecords.setTop(top2);
@@ -343,6 +344,8 @@ public class GameForm extends Application{
 		Scene viewScene = new Scene(seeRecords, 800, 500);
 
 		next.setOnAction(e->{
+			thread = new Thread(gd);
+			thread.start();
 			stage.setScene(viewScene);
 			ft2.play();
 		});	
