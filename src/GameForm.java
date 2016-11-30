@@ -312,6 +312,7 @@ public class GameForm extends Application{
 		Button back = new Button("Back to Form");
 		back.setOnAction(e->{
 			stage.setScene(scene);
+			ft.play();
 		});
 		secondaryButtonBox.getChildren().add(back);
 		seeRecords.setBottom(secondaryButtonBox);
@@ -325,7 +326,7 @@ public class GameForm extends Application{
 
 		next.setOnAction(e->{
 			stage.setScene(viewScene);
-			
+			ft2.play();
 		});	
 		viewScene.getStylesheets().add("main.css");
 		scene.getStylesheets().add("main.css");
