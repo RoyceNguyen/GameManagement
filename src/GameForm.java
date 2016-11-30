@@ -250,7 +250,7 @@ public class GameForm extends Application{
 		 * @author Blaze 
 		 * Creates scene with BorderPane along with width and height of Pane
 		 */
-		Scene scene = new Scene(border, 800, 800);
+		Scene scene = new Scene(border, 800, 500);
 		stage.setTitle("Game Management");
 		stage.setScene(scene);
 		stage.show();
@@ -271,7 +271,7 @@ public class GameForm extends Application{
 		 * @author Tyler 
 		 * Sets padding to the BorderPane
 		 */
-		seeRecords.setPadding(new Insets(10,10,10,10));
+		//seeRecords.setPadding(new Insets(10,10,10,10));
 		/**
 		 * @author Tyler 
 		 * Creates a non-editable TextArea to show records
@@ -283,7 +283,7 @@ public class GameForm extends Application{
 		ImageView imgVw2 = new ImageView();
 		imgVw2.setImage(img);
 		//set the size of the title image view
-		imgVw2.setFitWidth(500);
+		imgVw2.setFitWidth(600);
 		imgVw2.setFitHeight(100);
 		//create animation for image
 		FadeTransition ft2 = new FadeTransition(Duration.millis(4000), imgVw2);
@@ -303,7 +303,7 @@ public class GameForm extends Application{
 		
 		//creates Text area to view game records 
 		TextArea records = new TextArea();
-		records.setMaxWidth(400);
+		records.setMaxWidth(600);
 		records.setEditable(false);
 		seeRecords.setTop(top2);
 		seeRecords.setCenter(records);
@@ -321,7 +321,7 @@ public class GameForm extends Application{
 		secondaryButtonBox.setPadding(new Insets(10,10,10,10));
 		secondaryButtonBox.setSpacing(10);
 		secondaryButtonBox.setStyle("-fx-background-color: #333333;");
-		Scene viewScene = new Scene(seeRecords, 800, 800);
+		Scene viewScene = new Scene(seeRecords, 800, 500);
 
 		next.setOnAction(e->{
 			stage.setScene(viewScene);
