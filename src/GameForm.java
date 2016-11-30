@@ -201,7 +201,7 @@ public class GameForm extends Application{
 				box1.getStyleClass().add("labels");
 				box2.getStyleClass().add("labels");
 				box3.getStyleClass().add("labels");
-				Label type = new Label("Select the types of games:");
+				Label type = new Label("What type of game is it:");
 				type.getStyleClass().add("labels");
 				GridPane.setConstraints(type, 2, 0);
 				type.setPadding(new Insets(0, 0, 0, 20));
