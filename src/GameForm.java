@@ -250,7 +250,8 @@ public class GameForm extends Application{
 		submit.setOnMouseClicked(new EventHandler<Event>(){
 			@Override
 			public void handle(Event event) {
-				/*Submit Functionality HERE*/
+				thread = new Thread(insert);
+				thread.start();
 			}
 		});
 		
