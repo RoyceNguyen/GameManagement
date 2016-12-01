@@ -1,11 +1,17 @@
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -36,6 +42,7 @@ public class GameForm extends Application{
 	public static TextField hours;
 	public static TextField rating;
 	public static TextArea gameDesc;
+	public static TextArea records;
 	public static CheckBox box1, box2, box3;
 	public static Connection connection;
 	InitializeDB db = new InitializeDB();
@@ -47,6 +54,8 @@ public class GameForm extends Application{
 	public void start(Stage stage) throws Exception {
 		//Create border pane for the whole form
 		BorderPane border = new BorderPane();
+		thread = new Thread(db);
+		thread.start();
 		
 		/**
 		 * @author Blaze 
@@ -250,8 +259,9 @@ public class GameForm extends Application{
 		submit.setOnMouseClicked(new EventHandler<Event>(){
 			@Override
 			public void handle(Event event) {
-				/*Submit Functionality HERE*/
-				clearForm();
+				thread = new Thread(insert);
+				thread.start();
+
 			}
 		});
 		
@@ -318,8 +328,8 @@ public class GameForm extends Application{
 		top2.setAlignment(Pos.CENTER);
 		
 		//creates Text area to view game records 
-		TextArea records = new TextArea();
-		records.setMaxWidth(550);
+		records = new TextArea();
+		records.setMaxWidth(600);
 		records.setEditable(false);
 		seeRecords.setTop(top2);
 		seeRecords.setCenter(records);
@@ -342,13 +352,32 @@ public class GameForm extends Application{
 		Scene viewScene = new Scene(seeRecords, 800, 500);
 
 		next.setOnAction(e->{
-			stage.setScene(viewScene);
+		/*	Platform.runLater(() -> {
+		        try {	
+		        	PreparedStatement	preparedStatement =
+							GameForm.connection.prepareStatement("SELECT * from GameDataBase");
+					
+					ResultSet rset = preparedStatement.executeQuery();
+					GameForm.records.clear();
+					GameForm.records.appendText("Game Title:"+ " " + "Rating" + " " + "Hours Played" + " " + "Game description" + "  " + "Type of game");
+					while(rset.next()){
+						GameForm.records.appendText(rset.getString("name") + " " + rset.getString("rating") + "\t|\t " + rset.getString("hours") + rset.getString("gameDesc") + "\n");
+					}
+		        } catch (Exception x) {
+		        	x.printStackTrace();
+		        }
+		    });*/
+        	stage.setScene(viewScene);
+
+			thread = new Thread(gd);
+			thread.start();
+		
 			ft2.play();
 		});	
 		viewScene.getStylesheets().add("main.css");
 		scene.getStylesheets().add("main.css");
 }
-	protected void clearForm(){
+	public static void  clearForm(){
 		name.clear();
 		hours.clear();
 		rating.clear();
@@ -357,7 +386,39 @@ public class GameForm extends Application{
 		box2.setSelected(false);
 		box3.setSelected(false);
 	}
-	
+	public static boolean formEmpty(){
+		boolean fieldEmpty = false;
+		if(name.getText().trim().isEmpty()){
+			 shake(name);
+			 fieldEmpty = true;
+		}
+		if(hours.getText().trim().isEmpty()){
+			shake(hours);
+			fieldEmpty = true;
+		}
+		if(rating.getText().trim().isEmpty()){
+			shake(rating);
+			fieldEmpty = true;
+		}
+		if(gameDesc.getText().trim().isEmpty()){
+			shake(gameDesc);
+			fieldEmpty = true;
+		}
+		if((!box1.isSelected())&&(!box2.isSelected())&&(!box3.isSelected())){
+			shake(box1);
+			shake(box2);
+			shake(box3);
+			fieldEmpty = true;
+		}
+		return fieldEmpty;
+	}
+	public static void shake(Node textfield){
+		TranslateTransition shake = new TranslateTransition(Duration.millis(20), textfield);
+		shake.setByX(22);
+		shake.setCycleCount(2);
+		shake.setAutoReverse(true);
+		shake.play();
+	}
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
 	Application.launch(args);

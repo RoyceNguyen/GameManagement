@@ -11,13 +11,7 @@ public class InitializeDB implements Runnable {
             System.out.println("Connection succsessful");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("Connection nsuccessful");
+			System.out.println("Connection successful");
 		}
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
