@@ -10,7 +10,7 @@ public class InsertData implements Runnable {
 		if(!GameForm.formEmpty()){
 			try {			
 				PreparedStatement	preparedStatement =
-						GameForm.connection.prepareStatement("insert into GameDatabase (gameTitle, rating, hours, description, video, card, board) values (?, ?,?,?,?,?,?);");
+						GameForm.connection.prepareStatement("insert into GameDataBase (gameTitle, rating, hours, description, video, card, board) values (?, ?,?,?,?,?,?);");
 				preparedStatement.setString(1, GameForm.name.getText());
 				preparedStatement.setString(2, GameForm.hours.getText());
 				preparedStatement.setString(3, GameForm.rating.getText());
@@ -20,9 +20,13 @@ public class InsertData implements Runnable {
 				preparedStatement.setInt(7, (GameForm.box3.isSelected()) ? 1 : 0);
 				preparedStatement.executeUpdate();
 				GameForm.clearForm();
+				System.out.println("Record Inserted");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}else{
+			System.out.println("Record not Inserted");
+
 		}
 		
 	}

@@ -1,8 +1,12 @@
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -50,6 +54,8 @@ public class GameForm extends Application{
 	public void start(Stage stage) throws Exception {
 		//Create border pane for the whole form
 		BorderPane border = new BorderPane();
+		thread = new Thread(db);
+		thread.start();
 		
 		/**
 		 * @author Blaze 
@@ -255,6 +261,7 @@ public class GameForm extends Application{
 			public void handle(Event event) {
 				thread = new Thread(insert);
 				thread.start();
+
 			}
 		});
 		
@@ -302,7 +309,7 @@ public class GameForm extends Application{
 		ImageView imgVw2 = new ImageView();
 		imgVw2.setImage(img);
 		//set the size of the title image view
-		imgVw2.setFitWidth(600);
+		imgVw2.setFitWidth(550);
 		imgVw2.setFitHeight(100);
 		//create animation for image
 		FadeTransition ft2 = new FadeTransition(Duration.millis(4000), imgVw2);
@@ -334,6 +341,7 @@ public class GameForm extends Application{
 			ft.play();
 		});
 		secondaryButtonBox.getChildren().add(back);
+		
 		seeRecords.setBottom(secondaryButtonBox);
 		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
 		secondaryButtonBox.setAlignment(Pos.CENTER);
@@ -344,9 +352,26 @@ public class GameForm extends Application{
 		Scene viewScene = new Scene(seeRecords, 800, 500);
 
 		next.setOnAction(e->{
+		/*	Platform.runLater(() -> {
+		        try {	
+		        	PreparedStatement	preparedStatement =
+							GameForm.connection.prepareStatement("SELECT * from GameDataBase");
+					
+					ResultSet rset = preparedStatement.executeQuery();
+					GameForm.records.clear();
+					GameForm.records.appendText("Game Title:"+ " " + "Rating" + " " + "Hours Played" + " " + "Game description" + "  " + "Type of game");
+					while(rset.next()){
+						GameForm.records.appendText(rset.getString("name") + " " + rset.getString("rating") + "\t|\t " + rset.getString("hours") + rset.getString("gameDesc") + "\n");
+					}
+		        } catch (Exception x) {
+		        	x.printStackTrace();
+		        }
+		    });*/
+        	stage.setScene(viewScene);
+
 			thread = new Thread(gd);
 			thread.start();
-			stage.setScene(viewScene);
+		
 			ft2.play();
 		});	
 		viewScene.getStylesheets().add("main.css");
