@@ -251,6 +251,7 @@ public class GameForm extends Application{
 			@Override
 			public void handle(Event event) {
 				/*Submit Functionality HERE*/
+				clearForm();
 			}
 		});
 		
