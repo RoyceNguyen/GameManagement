@@ -1,11 +1,17 @@
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -36,6 +42,7 @@ public class GameForm extends Application{
 	public static TextField hours;
 	public static TextField rating;
 	public static TextArea gameDesc;
+	public static TextArea records;
 	public static CheckBox box1, box2, box3;
 	public static Connection connection;
 	InitializeDB db = new InitializeDB();
@@ -47,6 +54,8 @@ public class GameForm extends Application{
 	public void start(Stage stage) throws Exception {
 		//Create border pane for the whole form
 		BorderPane border = new BorderPane();
+		thread = new Thread(db);
+		thread.start();
 		
 		/**
 		 * @author Blaze 
@@ -70,7 +79,7 @@ public class GameForm extends Application{
 			grid.setVgap(5);
 			grid.setHgap(5);
 			/**
-			 * @author Blaze 
+			 * @author Jared 
 			 * Created a TextField to enter the name of the title
 			 * of the game played.
 			 */
@@ -85,7 +94,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 *Created a TextField for the amount of hours played
 				 */
 				hours = new TextField();
@@ -97,7 +106,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created a TextField for the Rating TextField
 				 */
 				rating = new TextField();
@@ -109,7 +118,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(rating, 1, 1);
 				grid.getChildren().add(rating);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created a TextArea for the description of the game that 
 				 * the user may edit
 				 */
@@ -123,20 +132,20 @@ public class GameForm extends Application{
 				grid.getChildren().add(gameDesc);
 				
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Added an image and put it in an ImageView
 				 */
 				Image img = new Image("checkers.jpg");
 				ImageView imgVw = new ImageView();
 				imgVw.setImage(img);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Sets the height and width of the image
 				 */
 				imgVw.setFitWidth(500);
 				imgVw.setFitHeight(100);
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created an animation to the image that will fade it
 				 */
 				FadeTransition ft = new FadeTransition(Duration.millis(4000), imgVw);
@@ -147,7 +156,7 @@ public class GameForm extends Application{
 				ft.play();
 		
 				/**
-				 * @author Blaze 
+				 * @author Jared 
 				 * Created an HBox to place the image title in and sets
 				 * a background color the the HBox
 				 */
@@ -156,14 +165,14 @@ public class GameForm extends Application{
 		top.setSpacing(10);
 		top.setStyle("-fx-background-color: #333333;");
 		/**
-		 * @author Blaze 
+		 * @author Jared 
 		 * Adds the Image View to the HBox and sets the alignment to Center
 		 */
 		top.getChildren().add(imgVw);
 		top.setAlignment(Pos.CENTER);
 		
 		/**
-		 * @author Blaze 
+		 * @author Jared 
 		 * Created an HBox to add the Clear and Next buttons
 		 * Sets Padding and spacing to the Hbox
 		 * Sets a background color to the Hbox
@@ -201,7 +210,7 @@ public class GameForm extends Application{
 				box1.getStyleClass().add("labels");
 				box2.getStyleClass().add("labels");
 				box3.getStyleClass().add("labels");
-				Label type = new Label("Select the types of games:");
+				Label type = new Label("What type of game is it:");
 				type.getStyleClass().add("labels");
 				GridPane.setConstraints(type, 2, 0);
 				type.setPadding(new Insets(0, 0, 0, 20));
@@ -237,9 +246,26 @@ public class GameForm extends Application{
 			public void handle(Event event) {
 				//stage.setScene(/*NEW SCENE HERE*/);
 			}
-		}
-		);
-		bottom.getChildren().addAll(clear, next);
+		});
+		
+		/**
+		 * @author Jared 
+		 * Creates "Submit" Button
+		 */
+		//Brings you to the second scene
+		Button submit = new Button("SUBMIT");
+		submit.setPrefSize(100, 20);
+		//add buttons to the hbox
+		submit.setOnMouseClicked(new EventHandler<Event>(){
+			@Override
+			public void handle(Event event) {
+				thread = new Thread(insert);
+				thread.start();
+
+			}
+		});
+		
+		bottom.getChildren().addAll(clear, submit, next);
 		bottom.setAlignment(Pos.CENTER);
 		
 		//create grid pane for the central content of the app
@@ -247,7 +273,7 @@ public class GameForm extends Application{
 		border.setCenter(grid);
 		border.setBottom(bottom);
 		/**
-		 * @author Blaze 
+		 * @author Jared 
 		 * Creates scene with BorderPane along with width and height of Pane
 		 */
 		Scene scene = new Scene(border, 800, 500);
@@ -283,7 +309,7 @@ public class GameForm extends Application{
 		ImageView imgVw2 = new ImageView();
 		imgVw2.setImage(img);
 		//set the size of the title image view
-		imgVw2.setFitWidth(600);
+		imgVw2.setFitWidth(550);
 		imgVw2.setFitHeight(100);
 		//create animation for image
 		FadeTransition ft2 = new FadeTransition(Duration.millis(4000), imgVw2);
@@ -302,7 +328,7 @@ public class GameForm extends Application{
 		top2.setAlignment(Pos.CENTER);
 		
 		//creates Text area to view game records 
-		TextArea records = new TextArea();
+		records = new TextArea();
 		records.setMaxWidth(600);
 		records.setEditable(false);
 		seeRecords.setTop(top2);
@@ -315,6 +341,7 @@ public class GameForm extends Application{
 			ft.play();
 		});
 		secondaryButtonBox.getChildren().add(back);
+		
 		seeRecords.setBottom(secondaryButtonBox);
 		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
 		secondaryButtonBox.setAlignment(Pos.CENTER);
@@ -325,13 +352,32 @@ public class GameForm extends Application{
 		Scene viewScene = new Scene(seeRecords, 800, 500);
 
 		next.setOnAction(e->{
-			stage.setScene(viewScene);
+		/*	Platform.runLater(() -> {
+		        try {	
+		        	PreparedStatement	preparedStatement =
+							GameForm.connection.prepareStatement("SELECT * from GameDataBase");
+					
+					ResultSet rset = preparedStatement.executeQuery();
+					GameForm.records.clear();
+					GameForm.records.appendText("Game Title:"+ " " + "Rating" + " " + "Hours Played" + " " + "Game description" + "  " + "Type of game");
+					while(rset.next()){
+						GameForm.records.appendText(rset.getString("name") + " " + rset.getString("rating") + "\t|\t " + rset.getString("hours") + rset.getString("gameDesc") + "\n");
+					}
+		        } catch (Exception x) {
+		        	x.printStackTrace();
+		        }
+		    });*/
+        	stage.setScene(viewScene);
+
+			thread = new Thread(gd);
+			thread.start();
+		
 			ft2.play();
 		});	
 		viewScene.getStylesheets().add("main.css");
 		scene.getStylesheets().add("main.css");
 }
-	protected void clearForm(){
+	public static void  clearForm(){
 		name.clear();
 		hours.clear();
 		rating.clear();
@@ -340,7 +386,39 @@ public class GameForm extends Application{
 		box2.setSelected(false);
 		box3.setSelected(false);
 	}
-	
+	public static boolean formEmpty(){
+		boolean fieldEmpty = false;
+		if(name.getText().trim().isEmpty()){
+			 shake(name);
+			 fieldEmpty = true;
+		}
+		if(hours.getText().trim().isEmpty()){
+			shake(hours);
+			fieldEmpty = true;
+		}
+		if(rating.getText().trim().isEmpty()){
+			shake(rating);
+			fieldEmpty = true;
+		}
+		if(gameDesc.getText().trim().isEmpty()){
+			shake(gameDesc);
+			fieldEmpty = true;
+		}
+		if((!box1.isSelected())&&(!box2.isSelected())&&(!box3.isSelected())){
+			shake(box1);
+			shake(box2);
+			shake(box3);
+			fieldEmpty = true;
+		}
+		return fieldEmpty;
+	}
+	public static void shake(Node textfield){
+		TranslateTransition shake = new TranslateTransition(Duration.millis(20), textfield);
+		shake.setByX(22);
+		shake.setCycleCount(2);
+		shake.setAutoReverse(true);
+		shake.play();
+	}
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
 	Application.launch(args);

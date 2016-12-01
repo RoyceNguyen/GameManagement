@@ -6,21 +6,29 @@ public class InsertData implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		/*
-		if(!SimpleForm.formEmpty()){
+		
+		if(!GameForm.formEmpty()){
 			try {			
 				PreparedStatement	preparedStatement =
-						SimpleForm.connection.prepareStatement("insert into GuestBook (fname, lname, location) values (?, ? , ?);");
-				preparedStatement.setString(1, SimpleForm.fNameTextArea.getText());
-				preparedStatement.setString(2, SimpleForm.lNameTextArea.getText());
-				preparedStatement.setString(3, SimpleForm.fromTextArea.getText());
+						GameForm.connection.prepareStatement("insert into GameDataBase (gameTitle, rating, hours, description, video, card, board) values (?, ?,?,?,?,?,?);");
+				preparedStatement.setString(1, GameForm.name.getText());
+				preparedStatement.setString(2, GameForm.hours.getText());
+				preparedStatement.setString(3, GameForm.rating.getText());
+				preparedStatement.setString(4, GameForm.gameDesc.getText());
+				preparedStatement.setInt(5, (GameForm.box1.isSelected()) ? 1 : 0);
+				preparedStatement.setInt(6, (GameForm.box2.isSelected()) ? 1 : 0);
+				preparedStatement.setInt(7, (GameForm.box3.isSelected()) ? 1 : 0);
 				preparedStatement.executeUpdate();
-				SimpleForm.clearForm();
+				GameForm.clearForm();
+				System.out.println("Record Inserted");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}else{
+			System.out.println("Record not Inserted");
+
 		}
-		*/
+		
 	}
 }
 	
