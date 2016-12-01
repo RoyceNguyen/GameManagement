@@ -331,14 +331,6 @@ public class GameForm extends Application{
 		});
 		secondaryButtonBox.getChildren().add(back);
 		
-		BorderPane legend = new BorderPane();
-		HBox legendBox = new HBox();
-		Label legendTitle = new Label("Legend");
-		legendBox.getChildren().add(legendTitle);
-		legendTitle.setAlignment(Pos.TOP_LEFT);
-		legend.setTop(legendBox);
-		seeRecords.setRight(legend);
-		
 		seeRecords.setBottom(secondaryButtonBox);
 		BorderPane.setAlignment(secondaryButtonBox, Pos.CENTER);
 		secondaryButtonBox.setAlignment(Pos.CENTER);

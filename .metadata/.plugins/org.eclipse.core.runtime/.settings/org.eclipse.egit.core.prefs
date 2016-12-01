@@ -1,6 +1,5 @@
-<<<<<<< HEAD
-GitRepositoriesView.GitDirectories=/Users/web/Desktop/GameManagement/GameManagement/.git\:
-=======
-GitRepositoriesView.GitDirectories=/Users/web/Desktop/Game/GameManagement/.git\:
->>>>>>> formWithCheckbox
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=formWithCheckbox
+GitRepositoriesView.GitDirectories=/Users/web/Desktop/Game/GameManagement/.git\:/Users/web/Desktop/GameManagement/GameManagement/.git\:
 eclipse.preferences.version=1
