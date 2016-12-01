@@ -1,6 +1,5 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=formWithCheckbox
 eclipse.preferences.version=1
-<<<<<<< HEAD
-org.eclipse.rse.preferences.order.connections=amso0055z-13.Local
-=======
-org.eclipse.rse.preferences.order.connections=amso0055z-07.Local
->>>>>>> formWithCheckbox
+org.eclipse.rse.preferences.order.connections=amso0055z-07.Local;amso0055z-13.Local
