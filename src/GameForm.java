@@ -79,7 +79,7 @@ public class GameForm extends Application{
 			grid.setVgap(5);
 			grid.setHgap(5);
 			/**
-			 * @author Jared 
+			 * @author Jared/Blaze
 			 * Created a TextField to enter the name of the title
 			 * of the game played.
 			 */
@@ -94,7 +94,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(name, 1, 0);
 				grid.getChildren().add(name);
 				/**
-				 * @author Jared 
+				 * @author Jared/Blaze
 				 *Created a TextField for the amount of hours played
 				 */
 				hours = new TextField();
@@ -106,7 +106,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(hours, 1, 2);
 				grid.getChildren().add(hours);
 				/**
-				 * @author Jared 
+				 * @author Jared/Blaze
 				 * Created a TextField for the Rating TextField
 				 */
 				rating = new TextField();
@@ -118,7 +118,7 @@ public class GameForm extends Application{
 				GridPane.setConstraints(rating, 1, 1);
 				grid.getChildren().add(rating);
 				/**
-				 * @author Jared 
+				 * @author Jared/Blaze
 				 * Created a TextArea for the description of the game that 
 				 * the user may edit
 				 */
@@ -333,7 +333,8 @@ public class GameForm extends Application{
 		records.setEditable(false);
 		seeRecords.setTop(top2);
 		seeRecords.setCenter(records);
-		seeRecords.setStyle("-fx-background-color: #3BB258;");
+		seeRecords.getStylesheets().add("main.css");
+		//seeRecords.setStyle("-fx-background-color: #3BB258;");
 		HBox secondaryButtonBox = new HBox();
 		Button back = new Button("Back to Form");
 		back.setOnAction(e->{
