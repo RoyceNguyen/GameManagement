@@ -13,7 +13,7 @@ public class GrabData implements Runnable {
 			ResultSet rset = preparedStatement.executeQuery();
 			GameForm.records.clear();
 			while(rset.next()){
-			GameForm.records.appendText("Game Title:"+ " " + rset.getString("gameTitle") +"\n" + "Rating:" + " " + rset.getString("rating") + "\n" +"Hours Played:" + " " + rset.getString("hours") + "\n" + "Game description:" + rset.getString("description") + "\n");
+			GameForm.records.appendText("Game Title:"+ " " + rset.getString("gameTitle") +"\n" + "Rating:" + " " + rset.getString("rating") + "\n" +"Hours Played:" + " " + rset.getString("hours") + "\n" + "Game description:" + " " +  rset.getString("description") + "\n");
 			
 				if (rset.getInt("video") == 1){
 					GameForm.records.appendText("Video Game: Yes\n");
