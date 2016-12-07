@@ -331,6 +331,8 @@ public class GameForm extends Application{
 		records = new TextArea();
 		records.setMaxWidth(600);
 		records.setEditable(false);
+		records.setStyle("-fx-font-family: Osaka;");
+		records.setStyle("-fx-font-weight: bold;");
 		seeRecords.setTop(top2);
 		seeRecords.setCenter(records);
 		seeRecords.getStylesheets().add("main.css");
