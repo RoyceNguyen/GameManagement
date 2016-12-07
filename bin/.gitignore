@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-/GrabData.class
-/InitializeDB.class
-/InsertData.class
-=======
 /GameForm$1.class
 /GameForm$2.class
 /GameForm$3.class
@@ -11,6 +6,5 @@
 /InitializeDB.class
 /InsertData.class
 /checkers.jpg
->>>>>>> staging
 /database.class
 /main.css
