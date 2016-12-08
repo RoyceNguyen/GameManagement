@@ -1,6 +1,8 @@
 **
 SQLQuery to create the database table 
-create table GameDatabase (
+
+
+`create table GameDatabase (
   game_id INT NOT NULL AUTO_INCREMENT,
   gameTitle VARCHAR(128) NOT NULL,
   rating VARCHAR(20) NOT NULL,
@@ -10,7 +12,7 @@ create table GameDatabase (
   card bit NOT NULL,
   board bit NOT NULL,
   PRIMARY KEY(game_id)
-  );	
+  );`
 **
 
 
