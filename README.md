@@ -1,4 +1,23 @@
 **
+SQLQuery to create the database table 
+create table GameDatabase (
+  game_id INT NOT NULL AUTO_INCREMENT,
+  gameTitle VARCHAR(128) NOT NULL,
+  rating VARCHAR(20) NOT NULL,
+  hours VARCHAR(20) NOT NULL,
+  description VARCHAR(1024) NOT NULL,
+  video bit NOT NULL,
+  card bit NOT NULL,
+  board bit NOT NULL,
+  PRIMARY KEY(game_id)
+  );	
+**
+
+
+
+
+
+**
 Local MySQL Database 
 NOTE : php.scweb.ca cant be accessed at home , you can however download MySQL server on your home computer and test it there 
 Create a class named Const.java or download the zip folder from Cai and edit 
